@@ -1,0 +1,10 @@
+<nb-card>
+  <nb-card-header>¿Confirmar?</nb-card-header>
+  <nb-card-body>
+    {{ message }}
+  </nb-card-body>
+  <nb-card-footer>
+    <button class="cancel" nbButton status="danger" (click)="ref.close(false)">atrás</button>
+    <button nbButton status="primary" (click)="ref.close(true)">Confirmar</button>
+  </nb-card-footer>
+</nb-card>
