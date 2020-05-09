@@ -1,5 +1,42 @@
 <nb-card>
   <nb-card-header>
-    {{ product | ngxCapitalize }}
+    {{ productType | ngxCapitalize }}
   </nb-card-header>
+  <nb-card-body>
+    <div class="d-flex justify-content-center">
+      <table mat-table [dataSource]="dataSource" class="col-sm-12 col-xl-6">
+    
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef> Título </th>
+          <td mat-cell *matCellDef="let product"> {{product.title}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef> Precio </th>
+          <td mat-cell *matCellDef="let product"> {{product.price}} €</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Acciones </th>
+          <td mat-cell *matCellDef="let row"> 
+            <nb-icon
+              icon="edit-outline" 
+              pack="eva"
+              (click)="$event.stopPropagation()"
+              (click)="editProduct(row)"></nb-icon> 
+            <nb-icon class="danger"
+              icon="trash-2-outline" 
+              pack="eva"
+              (click)="$event.stopPropagation()"
+              (click)="deleteProduct(row)"></nb-icon></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="clickRow(row)"></tr>
+      </table>
+    </div>
+    <div>
+      <mat-paginator [length]="length" [pageSizeOptions]="[2, 10, 20]" showFirstLastButtons (page)="pageChanged($event)"></mat-paginator>
+    </div> 
+  </nb-card-body>
 </nb-card>

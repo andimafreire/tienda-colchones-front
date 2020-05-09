@@ -1,16 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { registerLocaleData } from '@angular/common';
+import es from '@angular/common/locales/es';
+import { getSpanishPaginatorIntl } from './spanish-paginator-intl';
 import {
   NbDialogModule,
   NbMenuModule,
   NbSidebarModule,
   NbToastrModule,
 } from '@nebular/theme';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+
+registerLocaleData(es);
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +32,10 @@ import {
     ThemeModule.forRoot(),
   ],
   bootstrap: [AppComponent],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'es-ES' },
+    { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() }
+  ],
 })
 export class AppModule {
 }
