@@ -8,7 +8,6 @@ import {
   NbUserModule,
   NbContextMenuModule,
   NbButtonModule,
-  NbSelectModule,
   NbIconModule,
   NbThemeModule,
 } from '@nebular/theme';
@@ -35,7 +34,6 @@ const NB_MODULES = [
   NbSidebarModule,
   NbContextMenuModule,
   NbButtonModule,
-  NbSelectModule,
   NbIconModule,
   NbEvaIconsModule,
 ];

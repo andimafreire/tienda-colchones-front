@@ -10,9 +10,17 @@ export class BackendService {
 
   constructor(private http: HttpClient) {}
 
+  login(user: any): Observable<any> {
+    return this.http.post(`${environment.backendUrl}users/login/`, user);
+  }
+
   getProductList(type: string, page: string, pageSize: string): Observable<any> {
     const params =  new HttpParams().set("type",type).set("page", page).set("pagesize", pageSize);
 
     return this.http.get(`${environment.backendUrl}products/`, {params: params});
+  }
+
+  deleteProduct(id: string): Observable<any> {
+    return this.http.delete(`${environment.backendUrl}products/${id}/`);
   }
 }

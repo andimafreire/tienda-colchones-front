@@ -26,11 +26,8 @@ const routes: Routes = [{
     {
       path: 'somieres/:id',
       component: ProductComponent,
-    },
-    {
-      path: 'login',
-      component: LoginComponent,
     }, */
+    
     {
       path: '',
       redirectTo: '',

@@ -2,7 +2,7 @@
   <nb-card-header>
     {{ productType | ngxCapitalize }}
   </nb-card-header>
-  <nb-card-body>
+  <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="primary">
     <div class="d-flex justify-content-center">
       <table mat-table [dataSource]="dataSource" class="col-sm-12 col-xl-6">
     

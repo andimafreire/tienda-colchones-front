@@ -5,5 +5,22 @@
 @include nb-install-component() {
   .menu-sidebar ::ng-deep .scrollable {
     padding-top: nb-theme(layout-padding-top);
+
+    a.active {
+      color: nb-theme(text-basic-color);
+      nb-icon {
+        color: nb-theme(color-basic-600);
+      }
+    }
+
+    a.active:hover {
+      color: nb-theme(text-primary-hover-color);
+      nb-icon {
+        color: nb-theme(text-primary-hover-color);
+      }
+    }
+    a.active::before {
+      display: none;
+    }
   }
 }

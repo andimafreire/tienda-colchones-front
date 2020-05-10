@@ -31,6 +31,7 @@
     display: flex;
     align-items: center;
     width: auto;
+    min-width: 5rem;
 
     .sidebar-toggle {
       @include nb-ltr(padding-right, 1.25rem);
@@ -64,6 +65,9 @@
 
   @include media-breakpoint-down(is) {
     nb-select {
+      display: none;
+    }
+    .logo {
       display: none;
     }
   }
