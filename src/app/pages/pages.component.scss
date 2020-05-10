@@ -5,6 +5,24 @@
     display: block;
     animation: fade 1s;
 
+    nb-icon {
+      font-size: 1.55rem;
+      color: nb-theme(button-filled-primary-background-color);
+      cursor: pointer;
+  
+      ::ng-deep svg {
+        vertical-align: top;
+      }
+    }
+    
+    nb-icon:hover {
+      color: nb-theme(button-filled-primary-hover-background-color);
+    }
+  
+    nb-icon:hover.danger {
+      color: nb-theme(button-filled-danger-hover-background-color);
+    }
+
     @keyframes fade {
       from {
         opacity: 0;

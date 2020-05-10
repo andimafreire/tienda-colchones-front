@@ -20,6 +20,10 @@ export class BackendService {
     return this.http.get(`${environment.backendUrl}products/`, {params: params});
   }
 
+  getProduct(id: string): Observable<any> {
+    return this.http.get(`${environment.backendUrl}products/${id}/`);
+  }
+
   deleteProduct(id: string): Observable<any> {
     return this.http.delete(`${environment.backendUrl}products/${id}/`);
   }

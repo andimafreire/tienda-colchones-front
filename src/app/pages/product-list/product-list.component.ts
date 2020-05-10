@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BackendService, ToastService, AuthService } from '../../services';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
@@ -25,6 +25,7 @@ export class ProductListComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private backend: BackendService,
               private dialogService: NbDialogService,
               private toast: ToastService,
@@ -62,6 +63,7 @@ export class ProductListComponent implements OnInit {
 
   clickRow(row) {
     console.log(row)
+    this.router.navigate([`/${row.type}/${row._id}`]);
   }
 
   editProduct(row) {

@@ -1,0 +1,11 @@
+@import '../../@theme/styles/themes';
+
+@include nb-install-component() {
+    .picture {
+        background: no-repeat center center / contain;
+        height: 25rem;
+        width: 100%;
+        position: relative;
+        flex: 1;
+      }
+}

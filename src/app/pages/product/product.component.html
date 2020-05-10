@@ -1,0 +1,31 @@
+<nb-card>
+  <nb-card-header *ngIf=user>
+    <div class="d-flex">
+      <div class="p-2 ml-auto caption align-self-center">
+        <nb-icon
+          icon="edit-outline" 
+          pack="eva"
+          (click)="deleteProduct()"></nb-icon> 
+        <nb-icon class="danger"
+          icon="trash-2-outline" 
+          pack="eva"
+          (click)="deleteProduct()"></nb-icon>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="primary">
+    <div class="row">
+      <div class="picture col-12 col-md-6" style.background-image="url({{product.picture ? product.picture : 'assets/images/placeholder.png'}})"></div> 
+      <div class="col-12 col-md-6">
+        <h1>{{ product.title }}</h1>
+        <h4>{{ product.price }} €</h4>
+      </div>
+      <div class="col-12">
+        <h5>Descripción</h5>
+      </div>
+      <div class="col-12">
+        <p>{{ product.description }}</p>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

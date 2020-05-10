@@ -66,7 +66,7 @@ export class BackendInterceptor implements HttpInterceptor {
         break;
     }
     
-    if (error.status != 400) this.toast.showError(details);
+    if (error.status != 400 || details.non_field_errors) this.toast.showError(details);
     return throwError(details);
   }
 }

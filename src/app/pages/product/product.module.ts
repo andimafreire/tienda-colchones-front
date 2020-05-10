@@ -9,9 +9,7 @@ import {
   NbIconModule,
 } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ProductListComponent } from './product-list.component';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatTableModule } from '@angular/material/table';
+import { ProductComponent } from './product.component';
 
 const NB_MODULES = [
   NbCardModule,
@@ -27,15 +25,13 @@ const NB_MODULES = [
     ThemeModule,
     FormsModule,
     ReactiveFormsModule,
-    MatPaginatorModule,
-    MatTableModule,
     ...NB_MODULES,
   ],
   declarations: [
-    ProductListComponent,
+    ProductComponent,
   ],
   entryComponents: [
   ],
 })
 
-export class ProductListModule {}
+export class ProductModule {}
