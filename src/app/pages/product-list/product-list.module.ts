@@ -3,38 +3,34 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { 
   NbCardModule, 
   NbSpinnerModule, 
-  NbSelectModule,
-  NbInputModule,
-  NbButtonModule,
   NbIconModule,
 } from '@nebular/theme';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductListComponent } from './product-list.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { ProductFormModule } from '../components/product-form/product-form.module';
+import { EditProductDialogComponent } from '../components/edit-product-dialog/edit-product-dialog.component';
 
 const NB_MODULES = [
   NbCardModule,
   NbSpinnerModule,
-  NbSelectModule,
-  NbInputModule,
-  NbButtonModule,
   NbIconModule,
 ];
 
 @NgModule({
   imports: [
     ThemeModule,
-    FormsModule,
-    ReactiveFormsModule,
+    ProductFormModule,
     MatPaginatorModule,
     MatTableModule,
     ...NB_MODULES,
   ],
   declarations: [
     ProductListComponent,
+    EditProductDialogComponent,
   ],
   entryComponents: [
+    EditProductDialogComponent,
   ],
 })
 

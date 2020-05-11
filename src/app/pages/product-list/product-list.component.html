@@ -1,3 +1,5 @@
+<ngx-product-form *ngIf="user && productType != 'destacados'" [productModel]="{type: productType}" (confirm)="getProductList()"></ngx-product-form>
+
 <nb-card>
   <nb-card-header>
     {{ productType | ngxCapitalize }}
@@ -36,7 +38,7 @@
       </table>
     </div>
     <div>
-      <mat-paginator [length]="length" [pageSizeOptions]="[2, 10, 20]" showFirstLastButtons (page)="pageChanged($event)"></mat-paginator>
+      <mat-paginator [length]="length" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons (page)="pageChanged($event)"></mat-paginator>
     </div> 
   </nb-card-body>
 </nb-card>

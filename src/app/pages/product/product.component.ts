@@ -3,7 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BackendService, ToastService, AuthService } from '../../services';
 import {MatPaginator} from '@angular/material/paginator';
 import { NbDialogService } from '@nebular/theme';
-import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../components/confirm-dialog/confirm-dialog.component';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'ngx-product',
@@ -14,7 +15,10 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
 export class ProductComponent implements OnInit {
 
   product: any = {};
+  productId: string;
   user: any;
+  backendUrl:string = environment.backendUrl;
+  editMode: boolean = false;
   loading: boolean = true;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -24,49 +28,63 @@ export class ProductComponent implements OnInit {
               private backend: BackendService,
               private dialogService: NbDialogService,
               private toast: ToastService,
-              private auth: AuthService) {
-   
-  }
+              private auth: AuthService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(routeParams => {
       this.user = this.auth.getUser();
-      this.getProduct(routeParams.id);
+      this.productId = routeParams.id;
+      this.getProduct();
     });
   }
 
-  getProduct(id: string): void {
-    this.backend.getProduct(id).subscribe(
+  getProduct(): void {
+    this.backend.getProduct(this.productId).subscribe(
       result => {
         this.product = result;
         this.loading = false;
       },
-      () => this.router.navigate([''])   //  In error case go to home page.
+      (err) => {
+        if (err.details[0] && err.details[0].productId) err.details = err.details[0].productId;
+
+        this.toast.showError(err);
+        this.router.navigate(['']);
+        this.loading = false;
+      }
     ); 
   }
 
-  editProduct(row) {
-    console.log("edit")
+  editProduct(): void {
+    this.editMode = true;
   }
 
-  deleteProduct() {
+  productEdited(): void {
+    this.editMode = false;
+    this.getProduct();   
+  }
+
+  deleteProduct(): void {
     this.dialogService
       .open(ConfirmDialogComponent, { // Open confirm dialog
-          context: {
-              message: 'El elemento seleccionado será eliminado.',
-          },})
+        context: {
+          message: 'El elemento seleccionado será eliminado.',
+        },})
       .onClose.subscribe(confirm => {
-          if (confirm) {
-            this.loading = true;
-            this.backend.deleteProduct(this.product._id).subscribe(
-              () => {
-                this.toast.showSuccessMsg('Producto eliminado correctamente.'); 
-                this.router.navigate(['']);
-              },
-              () => this.loading = false  // Error
-            );
-          }
+        if (confirm) {
+          this.loading = true;
+          this.backend.deleteProduct("this.produdsfdsct._id").subscribe(
+            () => {
+              this.toast.showSuccessMsg('Producto eliminado correctamente.'); 
+              this.router.navigate(['']);
+            },
+            (err) => {
+              if (err.details[0] && err.details[0].productId) err.details = err.details[0].productId;
+  
+              this.toast.showError(err);
+              this.loading = false
+            }
+          );
+        }
       });
   }
-
 }

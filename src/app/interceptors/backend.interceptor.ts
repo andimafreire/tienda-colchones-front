@@ -39,7 +39,7 @@ export class BackendInterceptor implements HttpInterceptor {
   }
   private _handleAuthError(error: HttpErrorResponse): Observable<any> {
     var details: any;
-    console.log(error)
+    
     switch(error.status) {
       case 0: // Conection error
         details = {details: 'Error de conexión.'};

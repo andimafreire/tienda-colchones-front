@@ -1,0 +1,16 @@
+@import '../../../@theme/styles/themes';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+
+@include nb-install-component() {
+  ::ng-deep nb-card {
+    max-width: 95vw;
+    max-height: 95vh;
+
+    .back-button{
+      @include media-breakpoint-down(sm) {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+}
